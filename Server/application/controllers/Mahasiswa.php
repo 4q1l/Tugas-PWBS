@@ -20,6 +20,8 @@ class Mahasiswa extends Server
     // buat service "GET"
     function service_get()
     {
+        
+
         // ambil parameter token "npm"
         $token = $this->get("npm");
 

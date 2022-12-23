@@ -6,6 +6,9 @@ class Mahasiswa extends CI_Controller
 
 	public function index()
 	{
+		// setup "basic auth" dengan username dan passwrod
+		$this->client->http_login("admin","admin");
+
 		$data['tampil'] = json_decode($this->client->simple_get(APIMAHASISWA));
 
 		// foreach($data["tampil"]-> mahasiswa as $result) {
@@ -17,6 +20,9 @@ class Mahasiswa extends CI_Controller
 	}
 	function setDelete()
 	{
+		// setup "basic auth" dengan username dan passwrod
+		$this->client->http_login("admin","admin");
+
 		// buat variabel json
 		$json  = file_get_contents("php://input");
 		$hasil = json_decode($json);
@@ -39,6 +45,9 @@ class Mahasiswa extends CI_Controller
 
 	function setSave()
 	{
+		// setup "basic auth" dengan username dan passwrod
+		$this->client->http_login("admin","admin");
+
 		// baca nilai dari fetch
 		$data = array(
 			"npm" => $this->input->post("npmnya"),
@@ -56,6 +65,9 @@ class Mahasiswa extends CI_Controller
 	// fungsi untuk update data
 	function updateMahasiswa()
 	{
+		// setup "basic auth" dengan username dan passwrod
+		$this->client->http_login("admin","admin");
+
 		// $segmen = $this->uri->total_segments();
 		// ambil nilai npm
 		$token = $this->uri->segment(3);
@@ -79,6 +91,9 @@ class Mahasiswa extends CI_Controller
 
 	function setUpdate()
 	{
+		// setup "basic auth" dengan username dan passwrod
+		$this->client->http_login("admin","admin");
+
 		// baca nilai dari fetch
 		$data = array(
 			"npm" => $this->input->post("npmnya"),
