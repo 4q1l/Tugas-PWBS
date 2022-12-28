@@ -3,13 +3,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Mahasiswa extends CI_Controller
 {
+	// buat variabel global
+	var $key_name = 'GAB2-API';
+	var $key_value = 'RESTAPI-GAB2';
 
 	public function index()
 	{
 		// setup "basic auth" dengan username dan passwrod
 		$this->client->http_login("admin","admin");
 
-		$data['tampil'] = json_decode($this->client->simple_get(APIMAHASISWA));
+		$data['tampil'] = json_decode($this->client->simple_get(APIMAHASISWA, [$this->key_name => $this->key_value]));
 
 		// foreach($data["tampil"]-> mahasiswa as $result) {
 		// 	# code...
@@ -18,6 +21,7 @@ class Mahasiswa extends CI_Controller
 
 		$this->load->view('vw_mahasiswa', $data);
 	}
+
 	function setDelete()
 	{
 		// setup "basic auth" dengan username dan passwrod
@@ -27,7 +31,7 @@ class Mahasiswa extends CI_Controller
 		$json  = file_get_contents("php://input");
 		$hasil = json_decode($json);
 
-		$delete = json_decode($this->client->simple_delete(APIMAHASISWA, array("npm" => $hasil->npmnya)));
+		$delete = json_decode($this->client->simple_delete(APIMAHASISWA, array("npm" => $hasil->npmnya, $this->key_name => $this->key_value)));
 
 
 
@@ -54,7 +58,8 @@ class Mahasiswa extends CI_Controller
 			"nama" => $this->input->post("namanya"),
 			"telepon" => $this->input->post("teleponnya"),
 			"jurusan" => $this->input->post("jurusannya"),
-			"token" => $this->input->post("npmnya")
+			"token" => $this->input->post("npmnya"),
+			$this->key_name => $this->key_value
 		);
 
 		$save = json_decode($this->client->simple_post(APIMAHASISWA, $data));
@@ -73,7 +78,7 @@ class Mahasiswa extends CI_Controller
 		$token = $this->uri->segment(3);
 
 		// echo $token;
-		$tampil = json_decode($this->client->simple_get(APIMAHASISWA, array("npm" => $token)));
+		$tampil = json_decode($this->client->simple_get(APIMAHASISWA, array("npm" => $token, $this->key_name => $this->key_value)));
 
 		foreach ($tampil->mahasiswa as $result) {
 			# code...
@@ -100,7 +105,8 @@ class Mahasiswa extends CI_Controller
 			"nama" => $this->input->post("namanya"),
 			"telepon" => $this->input->post("teleponnya"),
 			"jurusan" => $this->input->post("jurusannya"),
-			"token" => $this->input->post("tokennya")
+			"token" => $this->input->post("tokennya"),
+			$this->key_name => $this->key_value
 		);
 
 		$update = json_decode($this->client->simple_put(APIMAHASISWA, $data));

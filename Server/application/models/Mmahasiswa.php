@@ -20,6 +20,17 @@ class Mmahasiswa extends CI_Model
 
         return $query;
     }
+
+    // function get_data($username)
+    // {
+    //     $this->db->select("username, key");
+    //     $this->db->from("tb_auth");
+    //     $this->db->where("username = '$username'");
+    //     $query = $this->db->get()->result();
+
+    //     return $query;
+    // }
+
     // buat fungsi untuk delete data
     function delete_data($token)
     {

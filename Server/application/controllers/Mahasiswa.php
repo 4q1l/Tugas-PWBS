@@ -31,6 +31,15 @@ class Mahasiswa extends Server
         $this->response(array("mahasiswa" => $hasil), 200);
     }
 
+    // function service_get()
+    // {
+    //     $username = $this->get("username");
+
+    //     $hasil = $this->model->get_data($username);
+
+    //     $this->response(array("auth" => $hasil), 200);
+    // }
+
     // buat service "POST"
     function service_post()
     {

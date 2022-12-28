@@ -1,3 +1,10 @@
+<?php
+    $key = str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+    $random_key = substr($key, 0, 10);
+
+    echo $random_key;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
