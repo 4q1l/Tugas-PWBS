@@ -29,12 +29,14 @@ CREATE TABLE IF NOT EXISTS `tb_auth` (
   `is_private_key` tinyint(1) NOT NULL DEFAULT '0',
   `ip_addresses` text,
   `date_created` int NOT NULL,
+  `username` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
--- Membuang data untuk tabel db_pwbs_gab2.tb_auth: ~1 rows (lebih kurang)
-INSERT INTO `tb_auth` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip_addresses`, `date_created`) VALUES
-	(1, 1, 'RESTAPI-GAB2', 0, 0, 0, NULL, 1);
+-- Membuang data untuk tabel db_pwbs_gab2.tb_auth: ~2 rows (lebih kurang)
+INSERT INTO `tb_auth` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip_addresses`, `date_created`, `username`) VALUES
+	(1, 1, 'RESTAPI-GAB2', 0, 0, 0, NULL, 1, 'tes'),
+	(2, 2, 'watidong', 1, 0, 0, NULL, 1, 'watiaja');
 
 -- membuang struktur untuk table db_pwbs_gab2.tb_lampu
 CREATE TABLE IF NOT EXISTS `tb_lampu` (
@@ -59,13 +61,13 @@ CREATE TABLE IF NOT EXISTS `tb_mahasiswa` (
   `telepon` varchar(15) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `jurusan` enum('IF','SI','TE','TI','TS','TK','SIA') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- Membuang data untuk tabel db_pwbs_gab2.tb_mahasiswa: ~3 rows (lebih kurang)
+-- Membuang data untuk tabel db_pwbs_gab2.tb_mahasiswa: ~0 rows (lebih kurang)
 INSERT INTO `tb_mahasiswa` (`id`, `npm`, `nama`, `telepon`, `jurusan`) VALUES
 	(1, '20312088', 'Aqil', '081278412469', 'IF'),
 	(2, '20312053', 'Aji', '08123124124', 'IF'),
-	(3, '123456789', 'qwertyuiop', '098765432', 'IF');
+	(4, '123456789', 'qwertyuiop', '1234567890', 'IF');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
