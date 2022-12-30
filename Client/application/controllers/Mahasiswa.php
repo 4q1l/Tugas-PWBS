@@ -10,7 +10,7 @@ class Mahasiswa extends CI_Controller
 	public function index()
 	{
 		// setup "basic auth" dengan username dan passwrod
-		$this->client->http_login("admin","admin");
+		$this->client->http_login("ftik","if");
 
 		$data['tampil'] = json_decode($this->client->simple_get(APIMAHASISWA, [$this->key_name => $this->key_value]));
 
@@ -25,7 +25,7 @@ class Mahasiswa extends CI_Controller
 	function setDelete()
 	{
 		// setup "basic auth" dengan username dan passwrod
-		$this->client->http_login("admin","admin");
+		$this->client->http_login("ftik","if");
 
 		// buat variabel json
 		$json  = file_get_contents("php://input");
@@ -50,7 +50,7 @@ class Mahasiswa extends CI_Controller
 	function setSave()
 	{
 		// setup "basic auth" dengan username dan passwrod
-		$this->client->http_login("admin","admin");
+		$this->client->http_login("ftik","if");
 
 		// baca nilai dari fetch
 		$data = array(
@@ -71,7 +71,7 @@ class Mahasiswa extends CI_Controller
 	function updateMahasiswa()
 	{
 		// setup "basic auth" dengan username dan passwrod
-		$this->client->http_login("admin","admin");
+		$this->client->http_login("ftik","if");
 
 		// $segmen = $this->uri->total_segments();
 		// ambil nilai npm
@@ -97,7 +97,7 @@ class Mahasiswa extends CI_Controller
 	function setUpdate()
 	{
 		// setup "basic auth" dengan username dan passwrod
-		$this->client->http_login("admin","admin");
+		$this->client->http_login("ftik","if");
 
 		// baca nilai dari fetch
 		$data = array(

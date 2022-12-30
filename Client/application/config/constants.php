@@ -86,4 +86,5 @@ defined('EXIT__AUTO_MAX')      or define('EXIT__AUTO_MAX', 125); // highest auto
 
 // custom constant (Konstanta)
 define("API", "http://localhost/PWBS-GAB2/Server");
+// define("API", "https://pwbs.tunasbaruelektrik.com");
 define("APIMAHASISWA", API . "/index.php/Mahasiswa");
