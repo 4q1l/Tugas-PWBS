@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Mahasiswa extends CI_Controller
+class Lampu extends CI_Controller
 {
 	// buat variabel global
 	var $key_name = 'GAB2-API';
@@ -12,14 +12,14 @@ class Mahasiswa extends CI_Controller
 		// setup "basic auth" dengan username dan passwrod
 		$this->client->http_login("ftik","if");
 
-		$data['tampil'] = json_decode($this->client->simple_get(APIMAHASISWA, [$this->key_name => $this->key_value]));
+		$data['tampil'] = json_decode($this->client->simple_get(APILAMPU, [$this->key_name => $this->key_value]));
 
-		// foreach($data["tampil"]-> mahasiswa as $result) {
+		// foreach($data["tampil"]-> lampu as $result) {
 		// 	# code...
-		// 	echo $result->npm_mhs."<br>";
+		// 	echo $result->kode_lampu."<br>";
 		// }
 
-		$this->load->view('vw_mahasiswa', $data);
+		$this->load->view('vw_lampu', $data);
 	}
 
 	function setDelete()
@@ -31,20 +31,20 @@ class Mahasiswa extends CI_Controller
 		$json  = file_get_contents("php://input");
 		$hasil = json_decode($json);
 
-		$delete = json_decode($this->client->simple_delete(APIMAHASISWA, array("npm" => $hasil->npmnya, $this->key_name => $this->key_value)));
+		$delete = json_decode($this->client->simple_delete(APILAMPU, array("kode" => $hasil->kodenya, $this->key_name => $this->key_value)));
 
 
 
 		// isi nilai err
 		// $err = 1;
 
-		// kiirm hasil ke "vw_mahasiswa"
+		// kiirm hasil ke "vw_lampu"
 		echo json_encode(array("statusnya" => $delete->status));
 	}
 
-	function addMahasiswa()
+	function addLampu()
 	{
-		$this->load->view('en_mahasiswa');
+		$this->load->view('en_lampu');
 	}
 
 	function setSave()
@@ -54,43 +54,43 @@ class Mahasiswa extends CI_Controller
 
 		// baca nilai dari fetch
 		$data = array(
-			"npm" => $this->input->post("npmnya"),
+			"kode" => $this->input->post("kodenya"),
 			"nama" => $this->input->post("namanya"),
-			"telepon" => $this->input->post("teleponnya"),
-			"jurusan" => $this->input->post("jurusannya"),
-			"token" => $this->input->post("npmnya"),
+			"harga" => $this->input->post("harganya"),
+			"tegangan" => $this->input->post("tegangannya"),
+			"token" => $this->input->post("kodenya"),
 			$this->key_name => $this->key_value
 		);
 
-		$save = json_decode($this->client->simple_post(APIMAHASISWA, $data));
-		// kiirm hasil ke "en_mahasiswa"
+		$save = json_decode($this->client->simple_post(APILAMPU, $data));
+		// kiirm hasil ke "en_lampu"
 		echo json_encode(array("statusnya" => $save->status));
 	}
 
 	// fungsi untuk update data
-	function updateMahasiswa()
+	function updateLampu()
 	{
 		// setup "basic auth" dengan username dan passwrod
 		$this->client->http_login("ftik","if");
 
 		// $segmen = $this->uri->total_segments();
-		// ambil nilai npm
+		// ambil nilai kode
 		$token = $this->uri->segment(3);
 
 		// echo $token;
-		$tampil = json_decode($this->client->simple_get(APIMAHASISWA, array("npm" => $token, $this->key_name => $this->key_value)));
+		$tampil = json_decode($this->client->simple_get(APILAMPU, array("kode" => $token, $this->key_name => $this->key_value)));
 
-		foreach ($tampil->mahasiswa as $result) {
+		foreach ($tampil->lampu as $result) {
 			# code...
-			// echo $result->nama_mhs . "<br>";
+			// echo $result->nama_lampu . "<br>";
 			$data = array(
-				"npm" => $result->npm_mhs,
-				"nama" => $result->nama_mhs,
-				"jurusan" => $result->jurusan_mhs,
-				"telepon" => $result->telepon_mhs,
+				"kode" => $result->kode_lampu,
+				"nama" => $result->nama_lampu,
+				"tegangan" => $result->tegangan_lampu,
+				"harga" => $result->harga_lampu,
 				"token" => $token
 			);
-			$this->load->view('up_mahasiswa', $data);
+			$this->load->view('up_lampu', $data);
 		}
 	}
 
@@ -101,16 +101,16 @@ class Mahasiswa extends CI_Controller
 
 		// baca nilai dari fetch
 		$data = array(
-			"npm" => $this->input->post("npmnya"),
+			"kode" => $this->input->post("kodenya"),
 			"nama" => $this->input->post("namanya"),
-			"telepon" => $this->input->post("teleponnya"),
-			"jurusan" => $this->input->post("jurusannya"),
+			"harga" => $this->input->post("harganya"),
+			"tegangan" => $this->input->post("tegangannya"),
 			"token" => $this->input->post("tokennya"),
 			$this->key_name => $this->key_value
 		);
 
-		$update = json_decode($this->client->simple_put(APIMAHASISWA, $data));
-		// kiirm hasil ke "up_mahasiswa"
+		$update = json_decode($this->client->simple_put(APILAMPU, $data));
+		// kiirm hasil ke "up_lampu"
 		echo json_encode(array("statusnya" => $update->status));
 	}
 }
